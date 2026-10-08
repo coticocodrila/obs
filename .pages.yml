@@ -1,0 +1,189 @@
+# Panel de administración del sitio (Pages CMS · pagescms.org)
+media:
+  input: media
+  output: /media
+
+content:
+  - name: noticias
+    label: "Noticias"
+    type: file
+    path: content/noticias.json
+    format: json
+    fields:
+      - { name: etiqueta, label: "Etiqueta", type: string }
+      - { name: titulo, label: "Título", type: string }
+      - name: items
+        label: "Noticias"
+        type: object
+        list: true
+        fields:
+          - { name: fecha, label: "Fecha", type: string }
+          - { name: titulo, label: "Título", type: string }
+          - { name: texto, label: "Resumen", type: text }
+          - { name: imagen, label: "Imagen (1200×800)", type: image }
+          - { name: enlace, label: "Enlace (opcional)", type: string }
+  - name: publicaciones
+    label: "Publicaciones"
+    type: file
+    path: content/publicaciones.json
+    format: json
+    fields:
+      - { name: etiqueta, label: "Etiqueta", type: string }
+      - { name: titulo, label: "Título", type: string }
+      - name: items
+        label: "Publicaciones"
+        type: object
+        list: true
+        fields:
+          - { name: tipo, label: "Tipo", type: string }
+          - { name: titulo, label: "Título", type: string }
+          - { name: fecha, label: "Año o fecha", type: string }
+          - { name: enlace, label: "Archivo PDF o enlace", type: file }
+  - name: portada
+    label: "Portada"
+    type: file
+    path: content/portada.json
+    format: json
+    fields:
+      - { name: etiqueta, label: "Etiqueta superior", type: string }
+      - { name: titulo, label: "Título", type: text }
+      - { name: texto, label: "Texto", type: text }
+      - { name: boton_principal, label: "Botón principal", type: string }
+      - { name: boton_principal_enlace, label: "Enlace botón principal", type: string }
+      - { name: boton_secundario, label: "Botón secundario", type: string }
+      - { name: boton_secundario_enlace, label: "Enlace botón secundario", type: string }
+      - { name: imagen, label: "Imagen (vertical 1200×1500)", type: image }
+      - { name: video, label: "Video MP4 o enlace YouTube/Vimeo (opcional", type: string }
+  - name: aviso
+    label: "Franja de emergencia"
+    type: file
+    path: content/aviso.json
+    format: json
+    fields:
+      - { name: mostrar, label: "Mostrar franja", type: boolean }
+      - { name: texto, label: "Texto", type: string }
+      - { name: telefono, label: "Teléfono de emergencia", type: string }
+  - name: cifras
+    label: "Cifras"
+    type: file
+    path: content/cifras.json
+    format: json
+    fields:
+      - { name: titulo, label: "Título", type: string }
+      - { name: nota, label: "Nota al pie", type: string }
+      - name: items
+        label: "Cifras"
+        type: object
+        list: true
+        fields:
+          - { name: valor, label: "Valor", type: string }
+          - { name: unidad, label: "Unidad", type: string }
+          - { name: texto, label: "Descripción", type: string }
+  - name: nosotros
+    label: "Quiénes somos"
+    type: file
+    path: content/nosotros.json
+    format: json
+    fields:
+      - { name: etiqueta, label: "Etiqueta", type: string }
+      - { name: titulo, label: "Título", type: string }
+      - { name: texto, label: "Texto (separa párrafos con una línea en blanco)", type: text }
+      - { name: mision, label: "Misión", type: text }
+      - { name: vision, label: "Visión", type: text }
+      - { name: imagen, label: "Imagen (1200×900)", type: image }
+  - name: enfermedades
+    label: "Enfermedades"
+    type: file
+    path: content/enfermedades.json
+    format: json
+    fields:
+      - { name: etiqueta, label: "Etiqueta", type: string }
+      - { name: titulo, label: "Título", type: string }
+      - { name: texto, label: "Introducción", type: text }
+      - name: items
+        label: "Enfermedades"
+        type: object
+        list: true
+        fields:
+          - { name: nombre, label: "Nombre", type: string }
+          - { name: profundidad, label: "Momento de la inmersión", type: string }
+          - { name: texto, label: "Descripción", type: text }
+          - { name: imagen, label: "Imagen (opcional)", type: image }
+  - name: lineas
+    label: "Líneas de trabajo"
+    type: file
+    path: content/lineas.json
+    format: json
+    fields:
+      - { name: etiqueta, label: "Etiqueta", type: string }
+      - { name: titulo, label: "Título", type: string }
+      - name: items
+        label: "Líneas"
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: "Título", type: string }
+          - { name: texto, label: "Texto", type: text }
+  - name: video
+    label: "Video"
+    type: file
+    path: content/video.json
+    format: json
+    fields:
+      - { name: etiqueta, label: "Etiqueta", type: string }
+      - { name: titulo, label: "Título", type: string }
+      - { name: texto, label: "Texto", type: text }
+      - { name: video, label: "Enlace YouTube/Vimeo o archivo MP4", type: string }
+      - { name: portada, label: "Imagen de portada del video (solo MP4)", type: image }
+  - name: reportar
+    label: "Reportar un caso"
+    type: file
+    path: content/reportar.json
+    format: json
+    fields:
+      - { name: etiqueta, label: "Etiqueta", type: string }
+      - { name: titulo, label: "Título", type: string }
+      - { name: texto, label: "Texto", type: text }
+      - { name: pasos, label: "Pasos", type: string, list: true }
+      - { name: aviso_privacidad, label: "Aviso de privacidad", type: text }
+      - { name: boton, label: "Texto del botón", type: string }
+      - { name: formulario_destino, label: "URL de envío (Formspree)", type: string }
+  - name: aliados
+    label: "Aliados"
+    type: file
+    path: content/aliados.json
+    format: json
+    fields:
+      - { name: titulo, label: "Título", type: string }
+      - name: items
+        label: "Instituciones"
+        type: object
+        list: true
+        fields:
+          - { name: nombre, label: "Nombre", type: string }
+          - { name: logo, label: "Logo", type: image }
+          - { name: enlace, label: "Sitio web", type: string }
+  - name: contacto
+    label: "Contacto"
+    type: file
+    path: content/contacto.json
+    format: json
+    fields:
+      - { name: etiqueta, label: "Etiqueta", type: string }
+      - { name: titulo, label: "Título", type: string }
+      - { name: texto, label: "Texto", type: text }
+  - name: sitio
+    label: "Datos generales"
+    type: file
+    path: content/sitio.json
+    format: json
+    fields:
+      - { name: nombre, label: "Nombre", type: string }
+      - { name: nombre_corto, label: "Sigla", type: string }
+      - { name: bajada, label: "Bajada bajo el nombre", type: string }
+      - { name: correo, label: "Correo", type: string }
+      - { name: telefono, label: "Teléfono", type: string }
+      - { name: direccion, label: "Dirección", type: string }
+      - { name: instagram, label: "Instagram (enlace)", type: string }
+      - { name: facebook, label: "Facebook (enlace)", type: string }
+      - { name: youtube, label: "YouTube (enlace)", type: string }
