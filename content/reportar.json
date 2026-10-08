@@ -1,0 +1,13 @@
+{
+  "etiqueta": "Reportar un caso",
+  "titulo": "¿Tuviste o presenciaste un accidente de buceo?",
+  "texto": "Texto tipo: tu reporte es confidencial y nos ayuda a entender mejor estas enfermedades. Puedes reportar un caso propio o de otra persona.",
+  "pasos": [
+    "Completa el formulario con los datos de la inmersión.",
+    "Nuestro equipo revisa el reporte y puede contactarte para más detalles.",
+    "La información se integra a la base de datos de forma anónima."
+  ],
+  "aviso_privacidad": "Texto tipo: los datos se usan solo con fines de vigilancia e investigación y se almacenan de forma anónima.",
+  "boton": "Enviar reporte",
+  "formulario_destino": ""
+}

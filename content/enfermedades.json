@@ -1,0 +1,43 @@
+{
+  "etiqueta": "Enfermedades del buceo",
+  "titulo": "Qué observamos",
+  "texto": "Texto tipo: estas son las principales condiciones que el observatorio registra y estudia. La información es general y no reemplaza la evaluación de un profesional de la salud.",
+  "items": [
+    {
+      "nombre": "Enfermedad descompresiva",
+      "profundidad": "Ascenso",
+      "texto": "Texto tipo: ocurre cuando el nitrógeno disuelto en los tejidos forma burbujas durante o después del ascenso. Puede causar dolor articular, fatiga, alteraciones de la piel o síntomas neurológicos.",
+      "imagen": ""
+    },
+    {
+      "nombre": "Barotrauma",
+      "profundidad": "Descenso y ascenso",
+      "texto": "Texto tipo: lesión producida por cambios de presión en espacios con aire, como oídos, senos paranasales o pulmones, cuando no se logra igualar la presión.",
+      "imagen": ""
+    },
+    {
+      "nombre": "Embolia gaseosa arterial",
+      "profundidad": "Ascenso",
+      "texto": "Texto tipo: ingreso de aire a la circulación arterial, generalmente por un ascenso rápido conteniendo la respiración. Es una emergencia médica.",
+      "imagen": ""
+    },
+    {
+      "nombre": "Narcosis por nitrógeno",
+      "profundidad": "Fondo",
+      "texto": "Texto tipo: efecto del nitrógeno a alta presión sobre el sistema nervioso, que altera el juicio y la coordinación a mayor profundidad.",
+      "imagen": ""
+    },
+    {
+      "nombre": "Osteonecrosis disbárica",
+      "profundidad": "Exposición crónica",
+      "texto": "Texto tipo: daño del tejido óseo asociado a exposiciones repetidas a presión, frecuente en buceo laboral de larga trayectoria.",
+      "imagen": ""
+    },
+    {
+      "nombre": "Toxicidad por oxígeno",
+      "profundidad": "Fondo",
+      "texto": "Texto tipo: efecto del oxígeno respirado a presiones parciales elevadas, que puede afectar al sistema nervioso central o a los pulmones.",
+      "imagen": ""
+    }
+  ]
+}

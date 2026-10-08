@@ -259,6 +259,7 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 7rem); }
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   };
+  var u = function (s) { return String(s || "").replace(/^\/media\//, "media/"); };
   var paras = function (s) {
     return String(s || "").split(/\n\s*\n/).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
   };
@@ -281,15 +282,15 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 7rem); }
       var yt = youtubeId(opts.video), vm = vimeoId(opts.video);
       if (yt) return '<div class="' + cls + '"><iframe src="https://www.youtube-nocookie.com/embed/' + yt + '" title="' + esc(opts.alt) + '" allowfullscreen loading="lazy"></iframe></div>';
       if (vm) return '<div class="' + cls + '"><iframe src="https://player.vimeo.com/video/' + vm + '" title="' + esc(opts.alt) + '" allowfullscreen loading="lazy"></iframe></div>';
-      return '<div class="' + cls + '"><video src="' + esc(opts.video) + '"' + (opts.poster ? ' poster="' + esc(opts.poster) + '"' : "") + (opts.autoplay ? " autoplay muted loop playsinline" : " controls") + ' preload="metadata"></video></div>';
+      return '<div class="' + cls + '"><video src="' + esc(u(opts.video)) + '"' + (opts.poster ? ' poster="' + esc(u(opts.poster)) + '"' : "") + (opts.autoplay ? " autoplay muted loop playsinline" : " controls") + ' preload="metadata"></video></div>';
     }
-    if (opts.img) return '<div class="' + cls + '"><img src="' + esc(opts.img) + '" alt="' + esc(opts.alt) + '" loading="lazy"></div>';
+    if (opts.img) return '<div class="' + cls + '"><img src="' + esc(u(opts.img)) + '" alt="' + esc(opts.alt) + '" loading="lazy"></div>';
     return '<div class="' + cls + '"><div class="ph">' + (opts.isVideo ? ICON_VID : ICON_IMG) + "<span>" + esc(opts.label) + "</span>" + (opts.size ? "<span>" + esc(opts.size) + "</span>" : "") + "</div></div>";
   }
 
   function depth(m) { return '<div class="depth">' + m + " m</div>"; }
   function href(link, inner, cls) {
-    return link ? '<a class="' + (cls || "") + '" href="' + esc(link) + '" target="_blank" rel="noopener">' + inner + "</a>" : '<div class="' + (cls || "") + '">' + inner + "</div>";
+    return link ? '<a class="' + (cls || "") + '" href="' + esc(u(link)) + '" target="_blank" rel="noopener">' + inner + "</a>" : '<div class="' + (cls || "") + '">' + inner + "</div>";
   }
 
   var FLAG = '<svg class="flag" viewBox="0 0 30 22" aria-hidden="true"><rect width="30" height="22" fill="var(--flag)"/><path d="M0 0h6l24 17.6V22h-6L0 4.4z" fill="#fff"/></svg>';
@@ -390,7 +391,7 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 7rem); }
     // Aliados
     out.push('<section class="partners" data-depth="40"><div class="wrap"><div class="head"><div class="label">' + esc(al.titulo) + '</div></div><div class="pt-grid">' +
       (al.items || []).map(function (i) {
-        return href(i.enlace, i.logo ? '<img src="' + esc(i.logo) + '" alt="' + esc(i.nombre) + '">' : esc(i.nombre), "pt");
+        return href(i.enlace, i.logo ? '<img src="' + esc(u(i.logo)) + '" alt="' + esc(i.nombre) + '">' : esc(i.nombre), "pt");
       }).join("") + "</div></div></section>");
 
     out.push("</main>");
@@ -433,11 +434,16 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 7rem); }
 
   if (FALLBACK) { render(FALLBACK); }
   else {
-    fetch("content/landing.json", { cache: "no-store" })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(render)
+    // Un archivo por sección: así el panel muestra cada una por separado.
+    var KEYS = ["sitio", "aviso", "portada", "cifras", "nosotros", "enfermedades", "lineas", "video", "reportar", "publicaciones", "noticias", "aliados", "contacto"];
+    Promise.all(KEYS.map(function (k) {
+      return fetch("content/" + k + ".json", { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : {}; })
+        .catch(function () { return {}; });
+    }))
+      .then(function (parts) { var c = {}; KEYS.forEach(function (k, i) { c[k] = parts[i]; }); render(c); })
       .catch(function () {
-        document.getElementById("app").innerHTML = '<p style="padding:2rem">No se pudo cargar el contenido (content/landing.json).</p>';
+        document.getElementById("app").innerHTML = '<p style="padding:2rem">No se pudo cargar el contenido.</p>';
       });
   }
 })();

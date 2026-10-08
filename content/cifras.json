@@ -1,0 +1,26 @@
+{
+  "titulo": "El observatorio en cifras",
+  "nota": "Cifras de ejemplo. Reemplazar por datos reales del observatorio.",
+  "items": [
+    {
+      "valor": "000",
+      "unidad": "casos",
+      "texto": "registrados en la base de datos del observatorio"
+    },
+    {
+      "valor": "00",
+      "unidad": "caletas",
+      "texto": "y centros de buceo vinculados a la red de vigilancia"
+    },
+    {
+      "valor": "00",
+      "unidad": "estudios",
+      "texto": "publicados o en curso sobre patología del buceo"
+    },
+    {
+      "valor": "000",
+      "unidad": "buzos",
+      "texto": "capacitados en prevención y primeros auxilios"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "etiqueta": "Qué hacemos",
+  "titulo": "Líneas de trabajo",
+  "items": [
+    {
+      "titulo": "Vigilancia",
+      "texto": "Texto tipo: registramos casos y accidentes de buceo para conocer su frecuencia, sus causas y los territorios más afectados."
+    },
+    {
+      "titulo": "Investigación",
+      "texto": "Texto tipo: desarrollamos estudios clínicos y epidemiológicos junto a universidades y centros de salud."
+    },
+    {
+      "titulo": "Formación",
+      "texto": "Texto tipo: capacitamos a buzos, equipos de salud y comunidades costeras en prevención y primera respuesta."
+    },
+    {
+      "titulo": "Comunidades",
+      "texto": "Texto tipo: trabajamos con caletas, sindicatos y escuelas de buceo para que la información llegue a quienes bucean."
+    }
+  ]
+}

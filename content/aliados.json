@@ -1,0 +1,30 @@
+{
+  "titulo": "Trabajamos junto a",
+  "items": [
+    {
+      "nombre": "Institución aliada 1",
+      "logo": "",
+      "enlace": ""
+    },
+    {
+      "nombre": "Institución aliada 2",
+      "logo": "",
+      "enlace": ""
+    },
+    {
+      "nombre": "Institución aliada 3",
+      "logo": "",
+      "enlace": ""
+    },
+    {
+      "nombre": "Institución aliada 4",
+      "logo": "",
+      "enlace": ""
+    },
+    {
+      "nombre": "Institución aliada 5",
+      "logo": "",
+      "enlace": ""
+    }
+  ]
+}

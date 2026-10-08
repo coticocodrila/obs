@@ -1,0 +1,30 @@
+{
+  "etiqueta": "Recursos",
+  "titulo": "Publicaciones y material descargable",
+  "items": [
+    {
+      "tipo": "Informe",
+      "titulo": "Título del informe anual de vigilancia",
+      "fecha": "2026",
+      "enlace": ""
+    },
+    {
+      "tipo": "Guía",
+      "titulo": "Título de guía de prevención para buzos",
+      "fecha": "2026",
+      "enlace": ""
+    },
+    {
+      "tipo": "Artículo",
+      "titulo": "Título de artículo científico del equipo",
+      "fecha": "2025",
+      "enlace": ""
+    },
+    {
+      "tipo": "Infografía",
+      "titulo": "Título de infografía de primeros auxilios",
+      "fecha": "2025",
+      "enlace": ""
+    }
+  ]
+}
