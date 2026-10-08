@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: Capacitación en primeros auxilios de buceo en caleta (ejemplo)
 subtitulo: "Texto tipo: más de 30 buzos y buzas participaron en una jornada
   práctica sobre cómo reconocer y actuar ante un accidente de buceo."
