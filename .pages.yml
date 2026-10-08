@@ -5,23 +5,81 @@ media:
 
 content:
   - name: noticias
-    label: "Noticias"
-    type: file
-    path: content/noticias.json
-    format: json
+    label: Noticias
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, published, tags]
+      primary: title
+      sort: [date, title]
+      search: [title, subtitulo]
+      default:
+        sort: date
+        order: desc
     fields:
-      - { name: etiqueta, label: "Etiqueta", type: string }
-      - { name: titulo, label: "Título", type: string }
-      - name: items
-        label: "Noticias"
+      - name: published
+        label: Noticia activa
+        type: boolean
+        default: true
+        description: "Activa = visible en el sitio. Desactívala para guardarla como borrador u ocultarla sin borrarla."
+      - name: title
+        label: Título
+        type: string
+        required: true
+        options:
+          maxlength: 110
+      - name: subtitulo
+        label: Subtítulo
+        type: text
+        required: true
+        description: "1 o 2 líneas. Aparece bajo el título, en la portada, en el listado y al compartir el enlace."
+        options:
+          maxlength: 220
+      - name: date
+        label: Fecha de publicación
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: autora
+        label: Autora (opcional)
+        type: string
+      - name: imagen
+        label: Imagen principal
+        type: image
+        description: "Horizontal, idealmente 1200 × 630 px y menos de 500 KB. Es la que muestran Google, WhatsApp y redes sociales al compartir."
+      - name: imagen_alt
+        label: Descripción de la imagen
+        type: string
+        description: "Qué se ve en la foto, en una frase. Ayuda a buscadores y a personas con lectores de pantalla."
+      - name: tags
+        label: Temas (tags)
+        type: select
+        description: "Elige uno o más. Permiten filtrar las noticias por tema."
+        options:
+          multiple: true
+          values: ["Capacitación", "Investigación", "Prevención", "Comunidades", "Alianzas", "Eventos", "Publicaciones", "Prensa"]
+      - name: seo
+        label: SEO (buscadores)
         type: object
-        list: true
         fields:
-          - { name: fecha, label: "Fecha", type: string }
-          - { name: titulo, label: "Título", type: string }
-          - { name: texto, label: "Resumen", type: text }
-          - { name: imagen, label: "Imagen (1200×800)", type: image }
-          - { name: enlace, label: "Enlace (opcional)", type: string }
+          - name: descripcion
+            label: Descripción para Google
+            type: text
+            description: "Opcional. Máximo 160 caracteres. Si la dejas vacía se usa el subtítulo."
+            options:
+              maxlength: 160
+          - name: palabras_clave
+            label: Palabras clave (keywords)
+            type: string
+            list: true
+            description: "Opcional. Una palabra o frase por casilla, por ejemplo: enfermedad descompresiva."
+      - name: body
+        label: Cuerpo de texto
+        type: rich-text
+        options:
+          format: markdown
   - name: publicaciones
     label: "Publicaciones"
     type: file
@@ -33,7 +91,10 @@ content:
       - name: items
         label: "Publicaciones"
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titulo}"
         fields:
           - { name: tipo, label: "Tipo", type: string }
           - { name: titulo, label: "Título", type: string }
@@ -74,7 +135,10 @@ content:
       - name: items
         label: "Cifras"
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{valor} {unidad}"
         fields:
           - { name: valor, label: "Valor", type: string }
           - { name: unidad, label: "Unidad", type: string }
@@ -103,7 +167,10 @@ content:
       - name: items
         label: "Enfermedades"
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{nombre}"
         fields:
           - { name: nombre, label: "Nombre", type: string }
           - { name: profundidad, label: "Momento de la inmersión", type: string }
@@ -120,7 +187,10 @@ content:
       - name: items
         label: "Líneas"
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titulo}"
         fields:
           - { name: titulo, label: "Título", type: string }
           - { name: texto, label: "Texto", type: text }
@@ -158,7 +228,10 @@ content:
       - name: items
         label: "Instituciones"
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{nombre}"
         fields:
           - { name: nombre, label: "Nombre", type: string }
           - { name: logo, label: "Logo", type: image }
