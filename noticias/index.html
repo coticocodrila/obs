@@ -1,0 +1,48 @@
+---
+layout: base
+title: Noticias
+subtitulo: "Capacitaciones, estudios, alianzas y todo lo que hacemos por un buceo más seguro."
+permalink: /noticias/
+---
+<div class="wrap">
+  <div class="list-head">
+    <div class="label">Noticias</div>
+    <h1>Novedades del observatorio</h1>
+    <p>{{ page.subtitulo }}</p>
+  </div>
+  {%- if site.posts.size > 0 %}
+  {%- assign temas = "" | split: "" -%}
+  {%- for p in site.posts %}{% for t in p.tags %}{% unless temas contains t %}{% assign temas = temas | push: t %}{% endunless %}{% endfor %}{% endfor -%}
+  {%- if temas.size > 0 %}
+  <nav class="filters" aria-label="Filtrar por tema">
+    <a href="#" data-filter="" aria-current="true">Todas</a>
+    {%- assign temas = temas | sort %}
+    {%- for t in temas %}<a href="#{{ t | slugify }}" data-filter="{{ t | slugify }}">{{ t }}</a>{% endfor %}
+  </nav>
+  {%- endif %}
+  <div class="posts" id="posts">
+    {%- for p in site.posts %}
+    {%- if forloop.first %}{% include tarjeta.html post=p destacada=true %}{% else %}{% include tarjeta.html post=p %}{% endif %}
+    {%- endfor %}
+  </div>
+  <p class="empty" id="sin-resultados" hidden>No hay noticias con este tema.</p>
+  {%- else %}
+  <p class="empty">Aún no hay noticias publicadas.</p>
+  {%- endif %}
+</div>
+<script>
+(function () {
+  var cards = document.querySelectorAll("#posts .post-card"), links = document.querySelectorAll(".filters a");
+  function apply() {
+    var tag = decodeURIComponent(location.hash.slice(1)), shown = 0, first = true;
+    cards.forEach(function (c) {
+      var ok = !tag || (" " + c.dataset.tags).indexOf(" " + tag + " ") > -1;
+      c.hidden = !ok; c.classList.toggle("lead", ok && first && !tag);
+      if (ok) { shown++; first = false; }
+    });
+    links.forEach(function (a) { if ((a.dataset.filter || "") === tag) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+    var e = document.getElementById("sin-resultados"); if (e) e.hidden = shown > 0;
+  }
+  window.addEventListener("hashchange", apply); apply();
+})();
+</script>

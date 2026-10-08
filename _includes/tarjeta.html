@@ -1,0 +1,13 @@
+{%- assign p = include.post -%}
+<a class="post-card{% if include.destacada %} lead{% endif %}" href="{{ p.url | relative_url }}" data-tags="{% for t in p.tags %}{{ t | slugify }} {% endfor %}">
+  {%- if p.imagen and p.imagen != "" %}
+  <img src="{{ p.imagen | relative_url }}" alt="{{ p.imagen_alt | escape }}" loading="lazy">
+  {%- else %}
+  <div class="ph" aria-hidden="true"></div>
+  {%- endif %}
+  <div class="txt">
+    <div class="card-meta"><time datetime="{{ p.date | date: '%Y-%m-%d' }}">{% include fecha.html fecha=p.date %}</time>{% if p.tags.size > 0 %}<span>{{ p.tags | first }}</span>{% endif %}</div>
+    <h2>{{ p.title }}</h2>
+    {%- if p.subtitulo %}<p>{{ p.subtitulo }}</p>{% endif %}
+  </div>
+</a>

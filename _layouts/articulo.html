@@ -1,0 +1,64 @@
+---
+layout: base
+---
+{%- assign media_url = '/media/' | relative_url -%}
+{%- capture src_nuevo %}src="{{ media_url }}{% endcapture -%}
+{%- assign enlace = page.url | absolute_url -%}
+{%- capture href_nuevo %}href="{{ media_url }}{% endcapture -%}
+<article class="article">
+  <div class="wrap">
+    <a class="back" href="{{ '/noticias/' | relative_url }}">← Todas las noticias</a>
+    <header>
+      {%- if page.tags.size > 0 %}
+      <ul class="tags" aria-label="Temas">
+        {%- for t in page.tags %}<li><a href="{{ '/noticias/' | relative_url }}#{{ t | slugify }}">{{ t }}</a></li>{% endfor %}
+      </ul>
+      {%- else %}
+      <div class="label">Noticias</div>
+      {%- endif %}
+      <h1>{{ page.title }}</h1>
+      {%- if page.subtitulo %}<p class="dek">{{ page.subtitulo }}</p>{% endif %}
+      {%- assign palabras = content | strip_html | number_of_words -%}
+      {%- assign minutos = palabras | divided_by: 200 | floor | plus: 1 -%}
+      <div class="meta">
+        <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{% include fecha.html fecha=page.date %}</time>
+        {%- if page.autora and page.autora != "" %}<span>Por {{ page.autora }}</span>{% endif %}
+        <span>{{ minutos }} min de lectura</span>
+      </div>
+    </header>
+    {%- if page.imagen and page.imagen != "" %}
+    <figure class="cover"><img src="{{ page.imagen | relative_url }}" alt="{{ page.imagen_alt | escape }}">{% if page.imagen_alt and page.imagen_alt != "" %}<figcaption>{{ page.imagen_alt }}</figcaption>{% endif %}</figure>
+    {%- endif %}
+    <div class="body">
+      {{ content | replace: 'src="/media/', src_nuevo | replace: 'href="/media/', href_nuevo }}
+    </div>
+    <div class="share">
+      <span>Compartir</span>
+      <a class="btn" href="https://wa.me/?text={{ page.title | append: ' ' | append: enlace | url_encode }}" target="_blank" rel="noopener">WhatsApp</a>
+      <button class="btn" type="button" id="copiar">Copiar enlace</button>
+    </div>
+  </div>
+</article>
+{%- if site.posts.size > 1 %}
+<section class="more">
+  <div class="wrap">
+    <h2>Otras noticias</h2>
+    <div class="posts">
+      {%- assign mostradas = 0 -%}
+      {%- for p in site.posts -%}
+        {%- if p.url == page.url or mostradas >= 3 %}{% continue %}{% endif -%}
+        {%- assign mostradas = mostradas | plus: 1 -%}
+        {% include tarjeta.html post=p %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+<script>
+document.getElementById("copiar").addEventListener("click", function () {
+  var b = this, url = location.href;
+  (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function () {
+    b.textContent = "Enlace copiado";
+  }).catch(function () { window.prompt("Copia este enlace:", url); });
+});
+</script>

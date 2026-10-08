@@ -206,6 +206,8 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 7rem); }
 
 /* Noticias */
 .news { background: var(--paper); }
+.news-head { grid-template-columns: 1fr auto; align-items: end; }
+@media (max-width: 600px) { .news-head { grid-template-columns: 1fr; } }
 .nw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
 .nw { display: grid; gap: .7rem; align-content: start; text-decoration: none; min-width: 0; }
 .nw .media { aspect-ratio: 3 / 2; margin-bottom: .3rem; }
@@ -290,7 +292,8 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 7rem); }
 
   function depth(m) { return '<div class="depth">' + m + " m</div>"; }
   function href(link, inner, cls) {
-    return link ? '<a class="' + (cls || "") + '" href="' + esc(u(link)) + '" target="_blank" rel="noopener">' + inner + "</a>" : '<div class="' + (cls || "") + '">' + inner + "</div>";
+    var ext = /^https?:/.test(link) || /\.pdf$/i.test(link);
+    return link ? '<a class="' + (cls || "") + '" href="' + esc(u(link)) + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + inner + "</a>" : '<div class="' + (cls || "") + '">' + inner + "</div>";
   }
 
   var FLAG = '<svg class="flag" viewBox="0 0 30 22" aria-hidden="true"><rect width="30" height="22" fill="var(--flag)"/><path d="M0 0h6l24 17.6V22h-6L0 4.4z" fill="#fff"/></svg>';
@@ -380,13 +383,16 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 7rem); }
         return "<li>" + href(i.enlace, '<span class="t">' + esc(i.tipo) + '</span><span class="n">' + esc(i.titulo) + '</span><span class="d">' + esc(i.fecha) + "</span>", i.enlace ? "" : "row") + "</li>";
       }).join("") + "</ul></div></section>");
 
-    // Noticias
+    // Noticias: las 3 más recientes del blog (api/noticias.json, generado por GitHub Pages)
+    var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+    var fmt = function (f) { var m = String(f || "").match(/^(\d{4})-(\d{2})-(\d{2})/); return m ? (+m[3]) + " de " + MESES[+m[2] - 1] + " de " + m[1] : f; };
+    var posts = (nw.items || []).slice(0, 3);
     out.push('<section class="news" id="noticias" data-depth="38"><div class="wrap">' + depth("38") +
-      '<div class="head"><div class="label">' + esc(nw.etiqueta) + "</div><h2>" + esc(nw.titulo) + "</h2></div>" +
-      '<div class="nw-grid">' + (nw.items || []).map(function (i) {
-        return href(i.enlace, media({ img: i.imagen, alt: i.titulo, label: "Imagen de la noticia", size: "1200 × 800 px" }) +
-          "<time>" + esc(i.fecha) + "</time><h3>" + esc(i.titulo) + "</h3><p>" + esc(i.texto) + "</p>", "nw");
-      }).join("") + "</div></div></section>");
+      '<div class="head news-head"><div><div class="label">' + esc(nw.etiqueta) + "</div><h2>" + esc(nw.titulo) + '</h2></div><a class="btn btn-ghost" href="noticias/">Ver todas las noticias</a></div>' +
+      (posts.length ? '<div class="nw-grid">' + posts.map(function (i) {
+        return href(i.url, media({ img: i.imagen, alt: i.imagen_alt || i.titulo, label: "Imagen de la noticia", size: "1200 × 800 px" }) +
+          '<time datetime="' + esc(i.fecha) + '">' + esc(fmt(i.fecha)) + "</time><h3>" + esc(i.titulo) + "</h3><p>" + esc(i.subtitulo) + "</p>", "nw");
+      }).join("") + "</div>" : '<p class="lead">Pronto publicaremos novedades.</p>') + "</div></section>");
 
     // Aliados
     out.push('<section class="partners" data-depth="40"><div class="wrap"><div class="head"><div class="label">' + esc(al.titulo) + '</div></div><div class="pt-grid">' +
@@ -403,7 +409,7 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 7rem); }
       '<div class="label">' + esc(co.etiqueta) + "</div><h2 style=\"margin-top:1rem\">" + esc(co.titulo) + '</h2><p class="lead">' + esc(co.texto) + "</p></div>" +
       "<dl><div><dt>Correo</dt><dd><a href=\"mailto:" + esc(s.correo) + '">' + esc(s.correo) + "</a></dd></div>" +
       "<div><dt>Teléfono</dt><dd>" + esc(s.telefono) + "</dd></div><div><dt>Dirección</dt><dd>" + esc(s.direccion) + "</dd></div></dl></div>" +
-      '<div class="foot"><span>© ' + new Date().getFullYear() + " " + esc(s.nombre) + '</span><div class="social">' + social + "</div></div></div></section></footer>");
+      '<div class="foot"><span>© ' + new Date().getFullYear() + " " + esc(s.nombre) + '</span><div class="social">' + social + '<a href="admin/" rel="nofollow">Acceso administradoras</a></div></div></div></section></footer>');
 
     document.getElementById("app").innerHTML = out.join("");
     wire(c);
@@ -441,7 +447,13 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 7rem); }
         .then(function (r) { return r.ok ? r.json() : {}; })
         .catch(function () { return {}; });
     }))
-      .then(function (parts) { var c = {}; KEYS.forEach(function (k, i) { c[k] = parts[i]; }); render(c); })
+      .then(function (parts) {
+        var c = {}; KEYS.forEach(function (k, i) { c[k] = parts[i]; });
+        return fetch("api/noticias.json", { cache: "no-store" })
+          .then(function (r) { return r.ok ? r.json() : []; })
+          .catch(function () { return []; })
+          .then(function (posts) { c.noticias = c.noticias || {}; c.noticias.items = posts; render(c); });
+      })
       .catch(function () {
         document.getElementById("app").innerHTML = '<p style="padding:2rem">No se pudo cargar el contenido.</p>';
       });

@@ -1,0 +1,44 @@
+{%- comment -%} Metaetiquetas para Google, redes sociales y WhatsApp {%- endcomment -%}
+{%- assign es_noticia = false -%}
+{%- if page.layout == "articulo" %}{% assign es_noticia = true %}{% endif -%}
+{%- assign desc = page.seo.descripcion | default: page.subtitulo | default: site.description | strip_html | strip_newlines -%}
+{%- assign img = page.imagen -%}
+<title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title }}</title>
+<meta name="description" content="{{ desc | truncate: 160 | escape }}">
+{%- if page.seo.palabras_clave.size > 0 %}
+<meta name="keywords" content="{{ page.seo.palabras_clave | join: ', ' | escape }}">
+{%- endif %}
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:locale" content="es_CL">
+<meta property="og:type" content="{% if es_noticia %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+<meta property="og:description" content="{{ desc | truncate: 200 | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta name="twitter:title" content="{{ page.title | default: site.title | escape }}">
+<meta name="twitter:description" content="{{ desc | truncate: 200 | escape }}">
+{%- if img and img != "" %}
+<meta property="og:image" content="{{ img | absolute_url }}">
+<meta property="og:image:alt" content="{{ page.imagen_alt | default: page.title | escape }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ img | absolute_url }}">
+{%- else %}
+<meta name="twitter:card" content="summary">
+{%- endif %}
+{%- if es_noticia %}
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- for t in page.tags %}
+<meta property="article:tag" content="{{ t | escape }}">
+{%- endfor %}
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "NewsArticle",
+ "headline": {{ page.title | jsonify }},
+ "description": {{ desc | jsonify }},
+ "datePublished": "{{ page.date | date_to_xmlschema }}",
+ "mainEntityOfPage": {{ page.url | absolute_url | jsonify }},
+ "image": [{% if img and img != "" %}{{ img | absolute_url | jsonify }}{% endif %}],
+ "keywords": {{ page.seo.palabras_clave | default: page.tags | jsonify }},
+ "author": {% if page.autora and page.autora != "" %}{"@type": "Person", "name": {{ page.autora | jsonify }}}{% else %}{"@type": "Organization", "name": {{ site.title | jsonify }}}{% endif %},
+ "publisher": {"@type": "Organization", "name": {{ site.title | jsonify }}}}
+</script>
+{%- endif %}

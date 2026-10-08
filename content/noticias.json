@@ -1,23 +1,4 @@
 {
   "etiqueta": "Noticias",
-  "titulo": "Novedades del observatorio",
-  "items": [
-    {
-      "fecha": "11/08/2026",
-      "titulo": "texto de prueba",
-      "texto": "acá hay un texto de prueba",
-      "imagen": "/media/1.png",
-      "enlace": "https://www.google.com"
-    },
-    {
-      "fecha": "Fecha",
-      "titulo": "Título de noticia de ejemplo sobre un nuevo estudio",
-      "texto": "Texto tipo: resumen breve de la noticia en dos o tres líneas."
-    },
-    {
-      "fecha": "Fecha",
-      "titulo": "Título de noticia de ejemplo sobre una alianza",
-      "texto": "Texto tipo: resumen breve de la noticia en dos o tres líneas."
-    }
-  ]
+  "titulo": "Novedades del observatorio"
 }

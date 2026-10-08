@@ -1,0 +1,30 @@
+# Configuración del sitio (GitHub Pages / Jekyll)
+title: "Observatorio de Enfermedades del Buceo"
+description: "Vigilancia, investigación y prevención de las enfermedades asociadas al buceo."
+lang: es
+timezone: America/Santiago
+
+# Dirección base. Con el dominio propio del observatorio, cambiar a: baseurl: ""
+baseurl: "/obs"
+
+# Cada noticia queda en /noticias/año/mes/titulo/
+permalink: /noticias/:year/:month/:title/
+# Publica también noticias con fecha de hoy aunque aún no sea la hora exacta
+future: true
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - README.md
+  - LEEME.md
+  - src
+
+# Todas las noticias usan la plantilla de artículo
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: articulo
