@@ -1,0 +1,240 @@
+{
+  "sitio": {
+    "nombre": "Observatorio de Enfermedades del Buceo",
+    "nombre_corto": "OEB",
+    "bajada": "Vigilancia, investigación y prevención",
+    "correo": "contacto@observatoriobuceo.cl",
+    "telefono": "+56 9 0000 0000",
+    "direccion": "Dirección de la institución, ciudad, región",
+    "instagram": "https://instagram.com/",
+    "facebook": "",
+    "youtube": ""
+  },
+  "aviso": {
+    "mostrar": true,
+    "texto": "¿Síntomas después de bucear? Deja de bucear, respira oxígeno si está disponible y busca atención médica.",
+    "telefono": "Número de emergencia por definir"
+  },
+  "portada": {
+    "etiqueta": "Salud y seguridad en el buceo",
+    "titulo": "Sabemos poco de lo que le pasa al cuerpo bajo el agua. Queremos cambiar eso.",
+    "texto": "Texto tipo: el Observatorio registra, estudia y difunde información sobre las enfermedades asociadas al buceo profesional, artesanal y recreativo, para que cada inmersión sea más segura.",
+    "boton_principal": "Reportar un caso",
+    "boton_principal_enlace": "#reportar",
+    "boton_secundario": "Conocer el observatorio",
+    "boton_secundario_enlace": "#nosotros",
+    "imagen": "",
+    "video": ""
+  },
+  "cifras": {
+    "titulo": "El observatorio en cifras",
+    "nota": "Cifras de ejemplo. Reemplazar por datos reales del observatorio.",
+    "items": [
+      {
+        "valor": "000",
+        "unidad": "casos",
+        "texto": "registrados en la base de datos del observatorio"
+      },
+      {
+        "valor": "00",
+        "unidad": "caletas",
+        "texto": "y centros de buceo vinculados a la red de vigilancia"
+      },
+      {
+        "valor": "00",
+        "unidad": "estudios",
+        "texto": "publicados o en curso sobre patología del buceo"
+      },
+      {
+        "valor": "000",
+        "unidad": "buzos",
+        "texto": "capacitados en prevención y primeros auxilios"
+      }
+    ]
+  },
+  "nosotros": {
+    "etiqueta": "Quiénes somos",
+    "titulo": "Un espacio de referencia para la medicina del buceo",
+    "texto": "Texto tipo: somos un equipo de profesionales de la salud, investigadores y buzos que trabaja para comprender y reducir las enfermedades asociadas al buceo. Reunimos información dispersa, la analizamos y la devolvemos a las comunidades que bucean en forma de conocimiento útil.\n\nTexto tipo: nuestro trabajo combina vigilancia epidemiológica, investigación aplicada y educación, en colaboración con centros de salud, universidades, organizaciones de pescadores y escuelas de buceo.",
+    "mision": "Texto tipo de misión: generar evidencia sobre las enfermedades del buceo para orientar la prevención, el tratamiento oportuno y las políticas públicas.",
+    "vision": "Texto tipo de visión: que ninguna persona que bucea sufra un daño evitable por falta de información.",
+    "imagen": ""
+  },
+  "enfermedades": {
+    "etiqueta": "Enfermedades del buceo",
+    "titulo": "Qué observamos",
+    "texto": "Texto tipo: estas son las principales condiciones que el observatorio registra y estudia. La información es general y no reemplaza la evaluación de un profesional de la salud.",
+    "items": [
+      {
+        "nombre": "Enfermedad descompresiva",
+        "profundidad": "Ascenso",
+        "texto": "Texto tipo: ocurre cuando el nitrógeno disuelto en los tejidos forma burbujas durante o después del ascenso. Puede causar dolor articular, fatiga, alteraciones de la piel o síntomas neurológicos.",
+        "imagen": ""
+      },
+      {
+        "nombre": "Barotrauma",
+        "profundidad": "Descenso y ascenso",
+        "texto": "Texto tipo: lesión producida por cambios de presión en espacios con aire, como oídos, senos paranasales o pulmones, cuando no se logra igualar la presión.",
+        "imagen": ""
+      },
+      {
+        "nombre": "Embolia gaseosa arterial",
+        "profundidad": "Ascenso",
+        "texto": "Texto tipo: ingreso de aire a la circulación arterial, generalmente por un ascenso rápido conteniendo la respiración. Es una emergencia médica.",
+        "imagen": ""
+      },
+      {
+        "nombre": "Narcosis por nitrógeno",
+        "profundidad": "Fondo",
+        "texto": "Texto tipo: efecto del nitrógeno a alta presión sobre el sistema nervioso, que altera el juicio y la coordinación a mayor profundidad.",
+        "imagen": ""
+      },
+      {
+        "nombre": "Osteonecrosis disbárica",
+        "profundidad": "Exposición crónica",
+        "texto": "Texto tipo: daño del tejido óseo asociado a exposiciones repetidas a presión, frecuente en buceo laboral de larga trayectoria.",
+        "imagen": ""
+      },
+      {
+        "nombre": "Toxicidad por oxígeno",
+        "profundidad": "Fondo",
+        "texto": "Texto tipo: efecto del oxígeno respirado a presiones parciales elevadas, que puede afectar al sistema nervioso central o a los pulmones.",
+        "imagen": ""
+      }
+    ]
+  },
+  "lineas": {
+    "etiqueta": "Qué hacemos",
+    "titulo": "Líneas de trabajo",
+    "items": [
+      {
+        "titulo": "Vigilancia",
+        "texto": "Texto tipo: registramos casos y accidentes de buceo para conocer su frecuencia, sus causas y los territorios más afectados."
+      },
+      {
+        "titulo": "Investigación",
+        "texto": "Texto tipo: desarrollamos estudios clínicos y epidemiológicos junto a universidades y centros de salud."
+      },
+      {
+        "titulo": "Formación",
+        "texto": "Texto tipo: capacitamos a buzos, equipos de salud y comunidades costeras en prevención y primera respuesta."
+      },
+      {
+        "titulo": "Comunidades",
+        "texto": "Texto tipo: trabajamos con caletas, sindicatos y escuelas de buceo para que la información llegue a quienes bucean."
+      }
+    ]
+  },
+  "video": {
+    "etiqueta": "En terreno",
+    "titulo": "Título del video institucional",
+    "texto": "Texto tipo: breve descripción del video. Puede ser un registro en terreno, una entrevista o una cápsula educativa.",
+    "video": "",
+    "portada": ""
+  },
+  "reportar": {
+    "etiqueta": "Reportar un caso",
+    "titulo": "¿Tuviste o presenciaste un accidente de buceo?",
+    "texto": "Texto tipo: tu reporte es confidencial y nos ayuda a entender mejor estas enfermedades. Puedes reportar un caso propio o de otra persona.",
+    "pasos": [
+      "Completa el formulario con los datos de la inmersión.",
+      "Nuestro equipo revisa el reporte y puede contactarte para más detalles.",
+      "La información se integra a la base de datos de forma anónima."
+    ],
+    "aviso_privacidad": "Texto tipo: los datos se usan solo con fines de vigilancia e investigación y se almacenan de forma anónima.",
+    "boton": "Enviar reporte",
+    "formulario_destino": ""
+  },
+  "publicaciones": {
+    "etiqueta": "Recursos",
+    "titulo": "Publicaciones y material descargable",
+    "items": [
+      {
+        "tipo": "Informe",
+        "titulo": "Título del informe anual de vigilancia",
+        "fecha": "2026",
+        "enlace": ""
+      },
+      {
+        "tipo": "Guía",
+        "titulo": "Título de guía de prevención para buzos",
+        "fecha": "2026",
+        "enlace": ""
+      },
+      {
+        "tipo": "Artículo",
+        "titulo": "Título de artículo científico del equipo",
+        "fecha": "2025",
+        "enlace": ""
+      },
+      {
+        "tipo": "Infografía",
+        "titulo": "Título de infografía de primeros auxilios",
+        "fecha": "2025",
+        "enlace": ""
+      }
+    ]
+  },
+  "noticias": {
+    "etiqueta": "Noticias",
+    "titulo": "Novedades del observatorio",
+    "items": [
+      {
+        "fecha": "Fecha",
+        "titulo": "Título de noticia de ejemplo sobre una capacitación en terreno",
+        "texto": "Texto tipo: resumen breve de la noticia en dos o tres líneas.",
+        "imagen": "",
+        "enlace": ""
+      },
+      {
+        "fecha": "Fecha",
+        "titulo": "Título de noticia de ejemplo sobre un nuevo estudio",
+        "texto": "Texto tipo: resumen breve de la noticia en dos o tres líneas.",
+        "imagen": "",
+        "enlace": ""
+      },
+      {
+        "fecha": "Fecha",
+        "titulo": "Título de noticia de ejemplo sobre una alianza",
+        "texto": "Texto tipo: resumen breve de la noticia en dos o tres líneas.",
+        "imagen": "",
+        "enlace": ""
+      }
+    ]
+  },
+  "aliados": {
+    "titulo": "Trabajamos junto a",
+    "items": [
+      {
+        "nombre": "Institución aliada 1",
+        "logo": "",
+        "enlace": ""
+      },
+      {
+        "nombre": "Institución aliada 2",
+        "logo": "",
+        "enlace": ""
+      },
+      {
+        "nombre": "Institución aliada 3",
+        "logo": "",
+        "enlace": ""
+      },
+      {
+        "nombre": "Institución aliada 4",
+        "logo": "",
+        "enlace": ""
+      },
+      {
+        "nombre": "Institución aliada 5",
+        "logo": "",
+        "enlace": ""
+      }
+    ]
+  },
+  "contacto": {
+    "etiqueta": "Contacto",
+    "titulo": "Conversemos",
+    "texto": "Texto tipo: escríbenos si eres buzo, profesional de la salud, investigador o parte de una organización que quiera colaborar con el observatorio."
+  }
+}
